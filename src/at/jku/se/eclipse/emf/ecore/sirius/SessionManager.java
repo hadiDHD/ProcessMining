@@ -17,34 +17,39 @@ public class SessionManager implements SessionManagerListener {
 	@Override
 	public void notify(Session arg0, int arg1) {
 		System.out.println("NOTIFY! : " + arg1);
-//		if(arg1 == 3) {
-//			MyListener listener = listenerMap.get(arg0);
-//			listener.serializeLog(System.currentTimeMillis()+"");
-//		}
-	}
-
-	@Override
-	public void notifyAddSession(Session arg0) {
-		Listener listener = new Listener(arg0);
-		listenerMap.put(arg0, listener);
-	}
-
-	@Override
-	public void notifyRemoveSession(Session arg0) {
-		Listener listener = listenerMap.get(arg0);
-		listenerMap.remove(arg0);
-		if (listener != null) {
-			listener.serializeLog();
+		if(arg1 == 7) { // opened
+			Listener listener = new Listener(arg0);
+			listenerMap.put(arg0, listener);
+		}else if(arg1 == 9) {// closed
+			Listener listener = listenerMap.get(arg0);
+			listenerMap.remove(arg0);
+			if (listener != null) {
+				listener.serializeLog();
+			}
 		}
 	}
 
 	@Override
+	public void notifyAddSession(Session arg0) {
+		System.out.println("notifyAddSession: " + arg0);
+//		Listener listener = new Listener(arg0);
+//		listenerMap.put(arg0, listener);
+	}
+
+	@Override
+	public void notifyRemoveSession(Session arg0) {
+		System.out.println("notifyRemoveSession : " + arg0);
+	}
+
+	@Override
 	public void viewpointDeselected(Viewpoint arg0) {
+		System.out.println("viewpointDeselected : " + arg0);
 		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void viewpointSelected(Viewpoint arg0) {
+		System.out.println("viewpointSelected: " + arg0);
 		// TODO Auto-generated method stub
 	}
 

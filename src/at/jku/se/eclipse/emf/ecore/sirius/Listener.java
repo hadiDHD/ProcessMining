@@ -42,6 +42,7 @@ import at.jku.se.eclipse.emf.ecore.change.xes.ChangeToXES;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.emf.transaction.impl.InternalTransactionalCommandStack;
@@ -105,7 +106,9 @@ public class Listener {
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("change", new XMIResourceFactoryImpl());
 		URI uri = URI.createURI("file:/" + path);
 		Resource resource = resourceSet.createResource(uri);
-		resource.getContents().add(changeDescription);
+		Copier copier = new Copier();
+		resource.getContents().add(copier.copy(changeDescription));
+		copier.copyReferences();
 		try {
 			resource.save(null);
 			System.out.println("saved to " + path);
