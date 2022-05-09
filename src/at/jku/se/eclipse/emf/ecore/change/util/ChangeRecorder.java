@@ -636,6 +636,15 @@ public class ChangeRecorder extends BasicChangeRecorder implements Adapter.Inter
 	protected FeatureChange createFeatureChange(EObject eObject, EStructuralFeature eStructuralFeature, Object value,
 			boolean isSet, long timeStamp) {
 		FeatureChange f = super.createFeatureChange(eObject, eStructuralFeature, value, isSet, timeStamp);
+		try {
+			if(eObject.eResource().getURI().fileExtension().equals("aird")
+					|| eObject.eResource().getURI().fileExtension().equals("genmodel")) {
+				return f;
+			}
+		}catch (Exception exc) {
+			// TODO: handle exception
+//			exc.printStackTrace();
+		}
 		if (f.getListChanges() != null && !f.getListChanges().isEmpty()) {
 			for (ListChange l : f.getListChanges()) {
 				trace.add(new ObjectListChangeToEvent(l, eObject, f, factory));
