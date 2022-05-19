@@ -87,7 +87,7 @@ public class Listener {
 		try {
 			resource.save(null);
 			System.out.println("saved to " + path);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return changeDescription;
