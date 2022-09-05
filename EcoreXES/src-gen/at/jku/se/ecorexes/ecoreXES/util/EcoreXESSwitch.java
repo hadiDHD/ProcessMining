@@ -87,11 +87,11 @@ public class EcoreXESSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case EcoreXESPackage.EVENT_TYPE: {
-			EventType eventType = (EventType) theEObject;
-			T result = caseEventType(eventType);
+		case EcoreXESPackage.FEATURE_AND_CLASS: {
+			FeatureAndClass featureAndClass = (FeatureAndClass) theEObject;
+			T result = caseFeatureAndClass(featureAndClass);
 			if (result == null)
-				result = caseAttributes(eventType);
+				result = caseAttributes(featureAndClass);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -183,17 +183,17 @@ public class EcoreXESSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Event Type</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Feature And Class</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Event Type</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Feature And Class</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEventType(EventType object) {
+	public T caseFeatureAndClass(FeatureAndClass object) {
 		return null;
 	}
 

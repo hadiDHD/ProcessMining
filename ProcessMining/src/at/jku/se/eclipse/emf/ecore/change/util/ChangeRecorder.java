@@ -368,10 +368,10 @@ public class ChangeRecorder extends BasicChangeRecorder implements Adapter.Inter
 					if (index != Notification.NO_INDEX) {
 						oldValue.set(index, notification.getOldValue());
 					}
-					change = createFeatureChange(eObject, feature, oldValue, notification.wasSet(), timeStamp);
+					change = createFeatureChange(eObject, feature, oldValue, notification, timeStamp);
 				} else {
 					Object oldValue = notification.getOldValue();
-					change = createFeatureChange(eObject, feature, oldValue, notification.wasSet(), timeStamp);
+					change = createFeatureChange(eObject, feature, oldValue, notification, timeStamp);
 				}
 				((InternalEList<FeatureChange>) changes).addUnique(change);
 			}
@@ -387,7 +387,7 @@ public class ChangeRecorder extends BasicChangeRecorder implements Adapter.Inter
 			if (change == null && changes != null) {
 				List<Object> oldValue = new BasicEList<Object>((Collection<?>) eObject.eGet(feature));
 				oldValue.remove(notification.getPosition());
-				change = createFeatureChange(eObject, feature, oldValue, notification.wasSet(), timeStamp);
+				change = createFeatureChange(eObject, feature, oldValue, notification, timeStamp);
 				((InternalEList<FeatureChange>) changes).addUnique(change);
 			}
 			if (containment != null) {
@@ -403,7 +403,7 @@ public class ChangeRecorder extends BasicChangeRecorder implements Adapter.Inter
 				for (int i = ((Collection<?>) notification.getNewValue()).size(); --i >= 0;) {
 					oldValue.remove(position);
 				}
-				change = createFeatureChange(eObject, feature, oldValue, notification.wasSet(), timeStamp);
+				change = createFeatureChange(eObject, feature, oldValue, notification, timeStamp);
 				((InternalEList<FeatureChange>) changes).addUnique(change);
 			}
 			if (containment != null) {
@@ -426,7 +426,7 @@ public class ChangeRecorder extends BasicChangeRecorder implements Adapter.Inter
 					position = 0;
 				}
 				oldValue.add(position, notification.getOldValue());
-				change = createFeatureChange(eObject, feature, oldValue, notification.wasSet(), timeStamp);
+				change = createFeatureChange(eObject, feature, oldValue, notification, timeStamp);
 				((InternalEList<FeatureChange>) changes).addUnique(change);
 			}
 			break;
@@ -444,7 +444,7 @@ public class ChangeRecorder extends BasicChangeRecorder implements Adapter.Inter
 						oldValue.add(positions[i], removedValues.get(i));
 					}
 				}
-				change = createFeatureChange(eObject, feature, oldValue, notification.wasSet(), timeStamp);
+				change = createFeatureChange(eObject, feature, oldValue, notification, timeStamp);
 				((InternalEList<FeatureChange>) changes).addUnique(change);
 			}
 			break;
@@ -455,7 +455,7 @@ public class ChangeRecorder extends BasicChangeRecorder implements Adapter.Inter
 				int position = notification.getPosition();
 				int oldPosition = (Integer) notification.getOldValue();
 				oldValue.move(oldPosition, position);
-				change = createFeatureChange(eObject, feature, oldValue, notification.wasSet(), timeStamp);
+				change = createFeatureChange(eObject, feature, oldValue, notification, timeStamp);
 				((InternalEList<FeatureChange>) changes).addUnique(change);
 			}
 			break;
@@ -642,8 +642,9 @@ public class ChangeRecorder extends BasicChangeRecorder implements Adapter.Inter
 
 	@Override
 	protected FeatureChange createFeatureChange(EObject eObject, EStructuralFeature eStructuralFeature, Object value,
-			boolean isSet, long timeStamp) {
-		FeatureChange f = super.createFeatureChange(eObject, eStructuralFeature, value, isSet, timeStamp);
+			Notification notification, long timeStamp) {
+		boolean isSet = notification.wasSet();
+		FeatureChange f = super.createFeatureChange(eObject, eStructuralFeature, value, notification, timeStamp);
 		try {
 			if(eObject.eResource().getURI().fileExtension().equals("aird")
 					|| eObject.eResource().getURI().fileExtension().equals("genmodel")) {
@@ -659,7 +660,7 @@ public class ChangeRecorder extends BasicChangeRecorder implements Adapter.Inter
 			}
 		} else {
 			trace.add(new FeatureChangeToEvent(eObject, f, factory));
-			FeatureChangeToEcoreXes.addEvent(eObject, f, ecoreLog, ecoreMeta);
+			FeatureChangeToEcoreXes.addEvent(eObject, f, ecoreLog, ecoreMeta, notification);
 		}
 		return f;
 	}

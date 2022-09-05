@@ -82,8 +82,8 @@ public class EcoreXESAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseEventType(EventType object) {
-			return createEventTypeAdapter();
+		public Adapter caseFeatureAndClass(FeatureAndClass object) {
+			return createFeatureAndClassAdapter();
 		}
 
 		@Override
@@ -168,16 +168,16 @@ public class EcoreXESAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link at.jku.se.ecorexes.ecoreXES.EventType <em>Event Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link at.jku.se.ecorexes.ecoreXES.FeatureAndClass <em>Feature And Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see at.jku.se.ecorexes.ecoreXES.EventType
+	 * @see at.jku.se.ecorexes.ecoreXES.FeatureAndClass
 	 * @generated
 	 */
-	public Adapter createEventTypeAdapter() {
+	public Adapter createFeatureAndClassAdapter() {
 		return null;
 	}
 

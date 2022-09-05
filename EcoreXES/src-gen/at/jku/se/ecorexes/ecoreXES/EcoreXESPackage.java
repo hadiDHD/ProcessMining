@@ -4,6 +4,7 @@ package at.jku.se.ecorexes.ecoreXES;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -85,13 +86,13 @@ public interface EcoreXESPackage extends EPackage {
 	int EVENT__TIMESTAMP = 1;
 
 	/**
-	 * The feature id for the '<em><b>Eventtype</b></em>' reference.
+	 * The feature id for the '<em><b>Fature And Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT__EVENTTYPE = 2;
+	int EVENT__FATURE_AND_CLASS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' reference.
@@ -121,13 +122,22 @@ public interface EcoreXESPackage extends EPackage {
 	int EVENT__DATA_VALUE = 5;
 
 	/**
+	 * The feature id for the '<em><b>Event Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__EVENT_TYPE = 6;
+
+	/**
 	 * The number of structural features of the '<em>Event</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_FEATURE_COUNT = 6;
+	int EVENT_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Event</em>' class.
@@ -231,14 +241,14 @@ public interface EcoreXESPackage extends EPackage {
 	int ATTRIBUTES_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link at.jku.se.ecorexes.ecoreXES.impl.EventTypeImpl <em>Event Type</em>}' class.
+	 * The meta object id for the '{@link at.jku.se.ecorexes.ecoreXES.impl.FeatureAndClassImpl <em>Feature And Class</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see at.jku.se.ecorexes.ecoreXES.impl.EventTypeImpl
-	 * @see at.jku.se.ecorexes.ecoreXES.impl.EcoreXESPackageImpl#getEventType()
+	 * @see at.jku.se.ecorexes.ecoreXES.impl.FeatureAndClassImpl
+	 * @see at.jku.se.ecorexes.ecoreXES.impl.EcoreXESPackageImpl#getFeatureAndClass()
 	 * @generated
 	 */
-	int EVENT_TYPE = 3;
+	int FEATURE_AND_CLASS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -247,7 +257,7 @@ public interface EcoreXESPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_TYPE__NAME = ATTRIBUTES__NAME;
+	int FEATURE_AND_CLASS__NAME = ATTRIBUTES__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Class</b></em>' reference.
@@ -256,7 +266,7 @@ public interface EcoreXESPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_TYPE__CLASS = ATTRIBUTES_FEATURE_COUNT + 0;
+	int FEATURE_AND_CLASS__CLASS = ATTRIBUTES_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -265,25 +275,35 @@ public interface EcoreXESPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_TYPE__FEATURE = ATTRIBUTES_FEATURE_COUNT + 1;
+	int FEATURE_AND_CLASS__FEATURE = ATTRIBUTES_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Event Type</em>' class.
+	 * The number of structural features of the '<em>Feature And Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_TYPE_FEATURE_COUNT = ATTRIBUTES_FEATURE_COUNT + 2;
+	int FEATURE_AND_CLASS_FEATURE_COUNT = ATTRIBUTES_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>Event Type</em>' class.
+	 * The number of operations of the '<em>Feature And Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_TYPE_OPERATION_COUNT = ATTRIBUTES_OPERATION_COUNT + 0;
+	int FEATURE_AND_CLASS_OPERATION_COUNT = ATTRIBUTES_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link at.jku.se.ecorexes.ecoreXES.EventType <em>Event Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see at.jku.se.ecorexes.ecoreXES.EventType
+	 * @see at.jku.se.ecorexes.ecoreXES.impl.EcoreXESPackageImpl#getEventType()
+	 * @generated
+	 */
+	int EVENT_TYPE = 8;
 
 	/**
 	 * The meta object id for the '{@link at.jku.se.ecorexes.ecoreXES.impl.FeatureImpl <em>Feature</em>}' class.
@@ -466,15 +486,15 @@ public interface EcoreXESPackage extends EPackage {
 	EAttribute getEvent_Timestamp();
 
 	/**
-	 * Returns the meta object for the reference '{@link at.jku.se.ecorexes.ecoreXES.Event#getEventtype <em>Eventtype</em>}'.
+	 * Returns the meta object for the reference '{@link at.jku.se.ecorexes.ecoreXES.Event#getFatureAndClass <em>Fature And Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Eventtype</em>'.
-	 * @see at.jku.se.ecorexes.ecoreXES.Event#getEventtype()
+	 * @return the meta object for the reference '<em>Fature And Class</em>'.
+	 * @see at.jku.se.ecorexes.ecoreXES.Event#getFatureAndClass()
 	 * @see #getEvent()
 	 * @generated
 	 */
-	EReference getEvent_Eventtype();
+	EReference getEvent_FatureAndClass();
 
 	/**
 	 * Returns the meta object for the reference '{@link at.jku.se.ecorexes.ecoreXES.Event#getId <em>Id</em>}'.
@@ -508,6 +528,17 @@ public interface EcoreXESPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getEvent_DataValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link at.jku.se.ecorexes.ecoreXES.Event#getEventType <em>Event Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Event Type</em>'.
+	 * @see at.jku.se.ecorexes.ecoreXES.Event#getEventType()
+	 * @see #getEvent()
+	 * @generated
+	 */
+	EAttribute getEvent_EventType();
 
 	/**
 	 * Returns the meta object for class '{@link at.jku.se.ecorexes.ecoreXES.Log <em>Log</em>}'.
@@ -574,36 +605,46 @@ public interface EcoreXESPackage extends EPackage {
 	EAttribute getAttributes_Name();
 
 	/**
-	 * Returns the meta object for class '{@link at.jku.se.ecorexes.ecoreXES.EventType <em>Event Type</em>}'.
+	 * Returns the meta object for class '{@link at.jku.se.ecorexes.ecoreXES.FeatureAndClass <em>Feature And Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Event Type</em>'.
-	 * @see at.jku.se.ecorexes.ecoreXES.EventType
+	 * @return the meta object for class '<em>Feature And Class</em>'.
+	 * @see at.jku.se.ecorexes.ecoreXES.FeatureAndClass
 	 * @generated
 	 */
-	EClass getEventType();
+	EClass getFeatureAndClass();
 
 	/**
-	 * Returns the meta object for the reference '{@link at.jku.se.ecorexes.ecoreXES.EventType#getClass_ <em>Class</em>}'.
+	 * Returns the meta object for the reference '{@link at.jku.se.ecorexes.ecoreXES.FeatureAndClass#getClass_ <em>Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Class</em>'.
-	 * @see at.jku.se.ecorexes.ecoreXES.EventType#getClass_()
-	 * @see #getEventType()
+	 * @see at.jku.se.ecorexes.ecoreXES.FeatureAndClass#getClass_()
+	 * @see #getFeatureAndClass()
 	 * @generated
 	 */
-	EReference getEventType_Class();
+	EReference getFeatureAndClass_Class();
 
 	/**
-	 * Returns the meta object for the reference '{@link at.jku.se.ecorexes.ecoreXES.EventType#getFeature <em>Feature</em>}'.
+	 * Returns the meta object for the reference '{@link at.jku.se.ecorexes.ecoreXES.FeatureAndClass#getFeature <em>Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Feature</em>'.
-	 * @see at.jku.se.ecorexes.ecoreXES.EventType#getFeature()
-	 * @see #getEventType()
+	 * @see at.jku.se.ecorexes.ecoreXES.FeatureAndClass#getFeature()
+	 * @see #getFeatureAndClass()
 	 * @generated
 	 */
-	EReference getEventType_Feature();
+	EReference getFeatureAndClass_Feature();
+
+	/**
+	 * Returns the meta object for enum '{@link at.jku.se.ecorexes.ecoreXES.EventType <em>Event Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Event Type</em>'.
+	 * @see at.jku.se.ecorexes.ecoreXES.EventType
+	 * @generated
+	 */
+	EEnum getEventType();
 
 	/**
 	 * Returns the meta object for class '{@link at.jku.se.ecorexes.ecoreXES.Feature <em>Feature</em>}'.
@@ -695,12 +736,12 @@ public interface EcoreXESPackage extends EPackage {
 		EAttribute EVENT__TIMESTAMP = eINSTANCE.getEvent_Timestamp();
 
 		/**
-		 * The meta object literal for the '<em><b>Eventtype</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Fature And Class</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EVENT__EVENTTYPE = eINSTANCE.getEvent_Eventtype();
+		EReference EVENT__FATURE_AND_CLASS = eINSTANCE.getEvent_FatureAndClass();
 
 		/**
 		 * The meta object literal for the '<em><b>Id</b></em>' reference feature.
@@ -725,6 +766,14 @@ public interface EcoreXESPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EVENT__DATA_VALUE = eINSTANCE.getEvent_DataValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Event Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVENT__EVENT_TYPE = eINSTANCE.getEvent_EventType();
 
 		/**
 		 * The meta object literal for the '{@link at.jku.se.ecorexes.ecoreXES.impl.LogImpl <em>Log</em>}' class.
@@ -779,14 +828,14 @@ public interface EcoreXESPackage extends EPackage {
 		EAttribute ATTRIBUTES__NAME = eINSTANCE.getAttributes_Name();
 
 		/**
-		 * The meta object literal for the '{@link at.jku.se.ecorexes.ecoreXES.impl.EventTypeImpl <em>Event Type</em>}' class.
+		 * The meta object literal for the '{@link at.jku.se.ecorexes.ecoreXES.impl.FeatureAndClassImpl <em>Feature And Class</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see at.jku.se.ecorexes.ecoreXES.impl.EventTypeImpl
-		 * @see at.jku.se.ecorexes.ecoreXES.impl.EcoreXESPackageImpl#getEventType()
+		 * @see at.jku.se.ecorexes.ecoreXES.impl.FeatureAndClassImpl
+		 * @see at.jku.se.ecorexes.ecoreXES.impl.EcoreXESPackageImpl#getFeatureAndClass()
 		 * @generated
 		 */
-		EClass EVENT_TYPE = eINSTANCE.getEventType();
+		EClass FEATURE_AND_CLASS = eINSTANCE.getFeatureAndClass();
 
 		/**
 		 * The meta object literal for the '<em><b>Class</b></em>' reference feature.
@@ -794,7 +843,7 @@ public interface EcoreXESPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EVENT_TYPE__CLASS = eINSTANCE.getEventType_Class();
+		EReference FEATURE_AND_CLASS__CLASS = eINSTANCE.getFeatureAndClass_Class();
 
 		/**
 		 * The meta object literal for the '<em><b>Feature</b></em>' reference feature.
@@ -802,7 +851,17 @@ public interface EcoreXESPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EVENT_TYPE__FEATURE = eINSTANCE.getEventType_Feature();
+		EReference FEATURE_AND_CLASS__FEATURE = eINSTANCE.getFeatureAndClass_Feature();
+
+		/**
+		 * The meta object literal for the '{@link at.jku.se.ecorexes.ecoreXES.EventType <em>Event Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see at.jku.se.ecorexes.ecoreXES.EventType
+		 * @see at.jku.se.ecorexes.ecoreXES.impl.EcoreXESPackageImpl#getEventType()
+		 * @generated
+		 */
+		EEnum EVENT_TYPE = eINSTANCE.getEventType();
 
 		/**
 		 * The meta object literal for the '{@link at.jku.se.ecorexes.ecoreXES.impl.FeatureImpl <em>Feature</em>}' class.

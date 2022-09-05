@@ -17,10 +17,11 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link at.jku.se.ecorexes.ecoreXES.Event#isSet <em>Set</em>}</li>
  *   <li>{@link at.jku.se.ecorexes.ecoreXES.Event#getTimestamp <em>Timestamp</em>}</li>
- *   <li>{@link at.jku.se.ecorexes.ecoreXES.Event#getEventtype <em>Eventtype</em>}</li>
+ *   <li>{@link at.jku.se.ecorexes.ecoreXES.Event#getFatureAndClass <em>Fature And Class</em>}</li>
  *   <li>{@link at.jku.se.ecorexes.ecoreXES.Event#getId <em>Id</em>}</li>
  *   <li>{@link at.jku.se.ecorexes.ecoreXES.Event#getReferencevalue <em>Referencevalue</em>}</li>
  *   <li>{@link at.jku.se.ecorexes.ecoreXES.Event#getDataValue <em>Data Value</em>}</li>
+ *   <li>{@link at.jku.se.ecorexes.ecoreXES.Event#getEventType <em>Event Type</em>}</li>
  * </ul>
  *
  * @see at.jku.se.ecorexes.ecoreXES.EcoreXESPackage#getEvent()
@@ -73,26 +74,26 @@ public interface Event extends EObject {
 	void setTimestamp(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>Eventtype</b></em>' reference.
+	 * Returns the value of the '<em><b>Fature And Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Eventtype</em>' reference.
-	 * @see #setEventtype(EventType)
-	 * @see at.jku.se.ecorexes.ecoreXES.EcoreXESPackage#getEvent_Eventtype()
+	 * @return the value of the '<em>Fature And Class</em>' reference.
+	 * @see #setFatureAndClass(FeatureAndClass)
+	 * @see at.jku.se.ecorexes.ecoreXES.EcoreXESPackage#getEvent_FatureAndClass()
 	 * @model required="true"
 	 * @generated
 	 */
-	EventType getEventtype();
+	FeatureAndClass getFatureAndClass();
 
 	/**
-	 * Sets the value of the '{@link at.jku.se.ecorexes.ecoreXES.Event#getEventtype <em>Eventtype</em>}' reference.
+	 * Sets the value of the '{@link at.jku.se.ecorexes.ecoreXES.Event#getFatureAndClass <em>Fature And Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Eventtype</em>' reference.
-	 * @see #getEventtype()
+	 * @param value the new value of the '<em>Fature And Class</em>' reference.
+	 * @see #getFatureAndClass()
 	 * @generated
 	 */
-	void setEventtype(EventType value);
+	void setFatureAndClass(FeatureAndClass value);
 
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' reference.
@@ -159,5 +160,30 @@ public interface Event extends EObject {
 	 * @generated
 	 */
 	void setDataValue(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Event Type</b></em>' attribute.
+	 * The literals are from the enumeration {@link at.jku.se.ecorexes.ecoreXES.EventType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Event Type</em>' attribute.
+	 * @see at.jku.se.ecorexes.ecoreXES.EventType
+	 * @see #setEventType(EventType)
+	 * @see at.jku.se.ecorexes.ecoreXES.EcoreXESPackage#getEvent_EventType()
+	 * @model
+	 * @generated
+	 */
+	EventType getEventType();
+
+	/**
+	 * Sets the value of the '{@link at.jku.se.ecorexes.ecoreXES.Event#getEventType <em>Event Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Event Type</em>' attribute.
+	 * @see at.jku.se.ecorexes.ecoreXES.EventType
+	 * @see #getEventType()
+	 * @generated
+	 */
+	void setEventType(EventType value);
 
 } // Event

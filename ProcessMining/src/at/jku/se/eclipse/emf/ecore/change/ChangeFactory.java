@@ -13,6 +13,7 @@ package at.jku.se.eclipse.emf.ecore.change;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
@@ -55,7 +56,7 @@ public interface ChangeFactory extends EFactory{
 	 */
   FeatureChange createFeatureChange();
 
-  FeatureChange createFeatureChange(EStructuralFeature feature, Object oldValue, boolean oldIsSet, long timeStamp);
+  FeatureChange createFeatureChange(EStructuralFeature feature, Object oldValue, Notification notification, long timeStamp);
 
   /**
 	 * Returns a new object of class '<em>List Change</em>'.

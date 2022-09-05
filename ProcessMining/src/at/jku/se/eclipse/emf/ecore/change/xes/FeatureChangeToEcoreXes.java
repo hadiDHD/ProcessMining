@@ -2,6 +2,7 @@ package at.jku.se.eclipse.emf.ecore.change.xes;
 
 import java.util.Date;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -12,15 +13,17 @@ import at.jku.se.ecorexes.ecoreXES.EcoreXESFactory;
 import at.jku.se.ecorexes.ecoreXES.Event;
 import at.jku.se.ecorexes.ecoreXES.EventType;
 import at.jku.se.ecorexes.ecoreXES.Feature;
+import at.jku.se.ecorexes.ecoreXES.FeatureAndClass;
 import at.jku.se.ecorexes.ecoreXES.ID;
 import at.jku.se.ecorexes.ecoreXES.JavaClass;
 import at.jku.se.ecorexes.ecoreXES.Log;
 import at.jku.se.ecorexes.ecoreXES.ReferenceValue;
 
 public class FeatureChangeToEcoreXes {
-	public static void addEvent(EObject reference, FeatureChange featureChange, Log log, EcoreXesMeta meta) {
+	public static void addEvent(EObject reference, FeatureChange featureChange, Log log, EcoreXesMeta meta, Notification notification) {
 		EcoreXESFactory f = EcoreXESFactory.eINSTANCE;
 		Event event = f.createEvent();
+		event.setEventType(EventType.get(notification.getEventType()));
 		event.setTimestamp(new Date(featureChange.getTimeStamp()));
 		event.setSet(featureChange.isSet());
 		String javaClassName = reference.eClass().getInstanceClassName();
@@ -40,16 +43,16 @@ public class FeatureChangeToEcoreXes {
 			log.getAttributes().add(feature);
 		}
 		String eventTypeName = reference.eClass().getName() + ":" + featureName;
-		EventType eventType = meta.eventTypeMap.get(eventTypeName);
-		if (eventType == null) {
-			eventType = f.createEventType();
-			eventType.setClass(javaClass);
-			eventType.setFeature(feature);
-			eventType.setName(eventTypeName);
-			meta.eventTypeMap.put(eventTypeName, eventType);
-			log.getAttributes().add(eventType);
+		FeatureAndClass featureAndClass = meta.eventTypeMap.get(eventTypeName);
+		if (featureAndClass == null) {
+			featureAndClass = f.createFeatureAndClass();
+			featureAndClass.setClass(javaClass);
+			featureAndClass.setFeature(feature);
+			featureAndClass.setName(eventTypeName);
+			meta.eventTypeMap.put(eventTypeName, featureAndClass);
+			log.getAttributes().add(featureAndClass);
 		}
-		event.setEventtype(eventType);
+		event.setFatureAndClass(featureAndClass);
 		String dataValue = featureChange.getDataValue();
 		if (dataValue != null && !dataValue.isEmpty()) {
 			event.setDataValue(dataValue);

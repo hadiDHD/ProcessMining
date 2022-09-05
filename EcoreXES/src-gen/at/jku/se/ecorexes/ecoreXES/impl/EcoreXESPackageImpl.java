@@ -8,12 +8,14 @@ import at.jku.se.ecorexes.ecoreXES.EcoreXESPackage;
 import at.jku.se.ecorexes.ecoreXES.Event;
 import at.jku.se.ecorexes.ecoreXES.EventType;
 import at.jku.se.ecorexes.ecoreXES.Feature;
+import at.jku.se.ecorexes.ecoreXES.FeatureAndClass;
 import at.jku.se.ecorexes.ecoreXES.JavaClass;
 import at.jku.se.ecorexes.ecoreXES.Log;
 import at.jku.se.ecorexes.ecoreXES.ReferenceValue;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -52,7 +54,7 @@ public class EcoreXESPackageImpl extends EPackageImpl implements EcoreXESPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass eventTypeEClass = null;
+	private EClass featureAndClassEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,6 +83,13 @@ public class EcoreXESPackageImpl extends EPackageImpl implements EcoreXESPackage
 	 * @generated
 	 */
 	private EClass referenceValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eventTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -178,7 +187,7 @@ public class EcoreXESPackageImpl extends EPackageImpl implements EcoreXESPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEvent_Eventtype() {
+	public EReference getEvent_FatureAndClass() {
 		return (EReference) eventEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -207,6 +216,15 @@ public class EcoreXESPackageImpl extends EPackageImpl implements EcoreXESPackage
 	 */
 	public EAttribute getEvent_DataValue() {
 		return (EAttribute) eventEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEvent_EventType() {
+		return (EAttribute) eventEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -268,8 +286,8 @@ public class EcoreXESPackageImpl extends EPackageImpl implements EcoreXESPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEventType() {
-		return eventTypeEClass;
+	public EClass getFeatureAndClass() {
+		return featureAndClassEClass;
 	}
 
 	/**
@@ -277,8 +295,8 @@ public class EcoreXESPackageImpl extends EPackageImpl implements EcoreXESPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEventType_Class() {
-		return (EReference) eventTypeEClass.getEStructuralFeatures().get(0);
+	public EReference getFeatureAndClass_Class() {
+		return (EReference) featureAndClassEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -286,8 +304,17 @@ public class EcoreXESPackageImpl extends EPackageImpl implements EcoreXESPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEventType_Feature() {
-		return (EReference) eventTypeEClass.getEStructuralFeatures().get(1);
+	public EReference getFeatureAndClass_Feature() {
+		return (EReference) featureAndClassEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getEventType() {
+		return eventTypeEEnum;
 	}
 
 	/**
@@ -358,10 +385,11 @@ public class EcoreXESPackageImpl extends EPackageImpl implements EcoreXESPackage
 		eventEClass = createEClass(EVENT);
 		createEAttribute(eventEClass, EVENT__SET);
 		createEAttribute(eventEClass, EVENT__TIMESTAMP);
-		createEReference(eventEClass, EVENT__EVENTTYPE);
+		createEReference(eventEClass, EVENT__FATURE_AND_CLASS);
 		createEReference(eventEClass, EVENT__ID);
 		createEReference(eventEClass, EVENT__REFERENCEVALUE);
 		createEAttribute(eventEClass, EVENT__DATA_VALUE);
+		createEAttribute(eventEClass, EVENT__EVENT_TYPE);
 
 		logEClass = createEClass(LOG);
 		createEAttribute(logEClass, LOG__RESOURCE);
@@ -371,9 +399,9 @@ public class EcoreXESPackageImpl extends EPackageImpl implements EcoreXESPackage
 		attributesEClass = createEClass(ATTRIBUTES);
 		createEAttribute(attributesEClass, ATTRIBUTES__NAME);
 
-		eventTypeEClass = createEClass(EVENT_TYPE);
-		createEReference(eventTypeEClass, EVENT_TYPE__CLASS);
-		createEReference(eventTypeEClass, EVENT_TYPE__FEATURE);
+		featureAndClassEClass = createEClass(FEATURE_AND_CLASS);
+		createEReference(featureAndClassEClass, FEATURE_AND_CLASS__CLASS);
+		createEReference(featureAndClassEClass, FEATURE_AND_CLASS__FEATURE);
 
 		featureEClass = createEClass(FEATURE);
 
@@ -382,6 +410,9 @@ public class EcoreXESPackageImpl extends EPackageImpl implements EcoreXESPackage
 		idEClass = createEClass(ID);
 
 		referenceValueEClass = createEClass(REFERENCE_VALUE);
+
+		// Create enums
+		eventTypeEEnum = createEEnum(EVENT_TYPE);
 	}
 
 	/**
@@ -413,7 +444,7 @@ public class EcoreXESPackageImpl extends EPackageImpl implements EcoreXESPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		eventTypeEClass.getESuperTypes().add(this.getAttributes());
+		featureAndClassEClass.getESuperTypes().add(this.getAttributes());
 		featureEClass.getESuperTypes().add(this.getAttributes());
 		javaClassEClass.getESuperTypes().add(this.getAttributes());
 		idEClass.getESuperTypes().add(this.getAttributes());
@@ -425,9 +456,9 @@ public class EcoreXESPackageImpl extends EPackageImpl implements EcoreXESPackage
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEvent_Timestamp(), ecorePackage.getEDate(), "timestamp", null, 0, 1, Event.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEvent_Eventtype(), this.getEventType(), null, "eventtype", null, 1, 1, Event.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEvent_FatureAndClass(), this.getFeatureAndClass(), null, "fatureAndClass", null, 1, 1,
+				Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEvent_Id(), this.getID(), null, "id", null, 1, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEvent_Referencevalue(), this.getReferenceValue(), null, "referencevalue", null, 0, 1,
@@ -435,6 +466,8 @@ public class EcoreXESPackageImpl extends EPackageImpl implements EcoreXESPackage
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEvent_DataValue(), ecorePackage.getEString(), "dataValue", null, 0, 1, Event.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEvent_EventType(), this.getEventType(), "eventType", null, 0, 1, Event.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(logEClass, Log.class, "Log", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLog_Resource(), ecorePackage.getEString(), "resource", null, 0, 1, Log.class, !IS_TRANSIENT,
@@ -451,14 +484,14 @@ public class EcoreXESPackageImpl extends EPackageImpl implements EcoreXESPackage
 		initEAttribute(getAttributes_Name(), ecorePackage.getEString(), "name", null, 0, 1, Attributes.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(eventTypeEClass, EventType.class, "EventType", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(featureAndClassEClass, FeatureAndClass.class, "FeatureAndClass", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEventType_Class(), this.getJavaClass(), null, "class", null, 1, 1, EventType.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEventType_Feature(), this.getFeature(), null, "feature", null, 1, 1, EventType.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFeatureAndClass_Class(), this.getJavaClass(), null, "class", null, 1, 1,
+				FeatureAndClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFeatureAndClass_Feature(), this.getFeature(), null, "feature", null, 1, 1,
+				FeatureAndClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -470,6 +503,17 @@ public class EcoreXESPackageImpl extends EPackageImpl implements EcoreXESPackage
 
 		initEClass(referenceValueEClass, ReferenceValue.class, "ReferenceValue", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
+
+		// Initialize enums and add enum literals
+		initEEnum(eventTypeEEnum, EventType.class, "EventType");
+		addEEnumLiteral(eventTypeEEnum, EventType.SET);
+		addEEnumLiteral(eventTypeEEnum, EventType.UNSET);
+		addEEnumLiteral(eventTypeEEnum, EventType.ADD);
+		addEEnumLiteral(eventTypeEEnum, EventType.REMOVE);
+		addEEnumLiteral(eventTypeEEnum, EventType.ADD_MANY);
+		addEEnumLiteral(eventTypeEEnum, EventType.REMOVE_MANY);
+		addEEnumLiteral(eventTypeEEnum, EventType.MOVE);
+		addEEnumLiteral(eventTypeEEnum, EventType.RESOLVE);
 
 		// Create resource
 		createResource(eNS_URI);

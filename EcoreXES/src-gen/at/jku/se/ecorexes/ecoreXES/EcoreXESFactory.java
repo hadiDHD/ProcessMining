@@ -40,13 +40,13 @@ public interface EcoreXESFactory extends EFactory {
 	Log createLog();
 
 	/**
-	 * Returns a new object of class '<em>Event Type</em>'.
+	 * Returns a new object of class '<em>Feature And Class</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Event Type</em>'.
+	 * @return a new object of class '<em>Feature And Class</em>'.
 	 * @generated
 	 */
-	EventType createEventType();
+	FeatureAndClass createFeatureAndClass();
 
 	/**
 	 * Returns a new object of class '<em>Feature</em>'.

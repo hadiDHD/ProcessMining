@@ -13,6 +13,7 @@ package at.jku.se.eclipse.emf.ecore.change.impl;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -153,9 +154,9 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory
 		return featureChange;
 	}
 
-  public FeatureChange createFeatureChange(EStructuralFeature feature, Object oldValue, boolean oldIsSet, long timeStamp)
+  public FeatureChange createFeatureChange(EStructuralFeature feature, Object oldValue, Notification notification, long timeStamp)
   {
-    FeatureChangeImpl featureChange = new FeatureChangeImpl(feature, oldValue, oldIsSet, timeStamp);
+    FeatureChangeImpl featureChange = new FeatureChangeImpl(feature, oldValue, notification, timeStamp);
     return featureChange;
   }
 

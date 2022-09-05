@@ -5,6 +5,7 @@ package at.jku.se.ecorexes.ecoreXES.impl;
 import at.jku.se.ecorexes.ecoreXES.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -60,8 +61,8 @@ public class EcoreXESFactoryImpl extends EFactoryImpl implements EcoreXESFactory
 			return createEvent();
 		case EcoreXESPackage.LOG:
 			return createLog();
-		case EcoreXESPackage.EVENT_TYPE:
-			return createEventType();
+		case EcoreXESPackage.FEATURE_AND_CLASS:
+			return createFeatureAndClass();
 		case EcoreXESPackage.FEATURE:
 			return createFeature();
 		case EcoreXESPackage.JAVA_CLASS:
@@ -72,6 +73,36 @@ public class EcoreXESFactoryImpl extends EFactoryImpl implements EcoreXESFactory
 			return createReferenceValue();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+		case EcoreXESPackage.EVENT_TYPE:
+			return createEventTypeFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+		case EcoreXESPackage.EVENT_TYPE:
+			return convertEventTypeToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -100,9 +131,9 @@ public class EcoreXESFactoryImpl extends EFactoryImpl implements EcoreXESFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventType createEventType() {
-		EventTypeImpl eventType = new EventTypeImpl();
-		return eventType;
+	public FeatureAndClass createFeatureAndClass() {
+		FeatureAndClassImpl featureAndClass = new FeatureAndClassImpl();
+		return featureAndClass;
 	}
 
 	/**
@@ -143,6 +174,28 @@ public class EcoreXESFactoryImpl extends EFactoryImpl implements EcoreXESFactory
 	public ReferenceValue createReferenceValue() {
 		ReferenceValueImpl referenceValue = new ReferenceValueImpl();
 		return referenceValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EventType createEventTypeFromString(EDataType eDataType, String initialValue) {
+		EventType result = EventType.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException(
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEventTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

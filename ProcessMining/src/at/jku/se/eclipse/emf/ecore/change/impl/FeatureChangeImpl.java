@@ -148,12 +148,12 @@ public class FeatureChangeImpl extends ChangeImpl implements FeatureChange
 		super();
 	}
 
-  protected FeatureChangeImpl(EStructuralFeature feature, Object value, boolean isSet, long timeStamp)
+  protected FeatureChangeImpl(EStructuralFeature feature, Object value, Notification notification, long timeStamp)
   {
     this();
     this.feature = feature;
     setValue(value);
-    this.set = isSet;
+    this.set = notification.wasSet();
     this.timeStamp = timeStamp;
   }
 

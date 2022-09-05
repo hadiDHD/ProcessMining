@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -265,9 +266,9 @@ public class BasicChangeRecorder extends ListDifferenceAnalyzer
     return null;
   }
 
-  protected FeatureChange createFeatureChange(EObject eObject, EStructuralFeature eStructuralFeature, Object value, boolean isSet, long timeStamp)
+  protected FeatureChange createFeatureChange(EObject eObject, EStructuralFeature eStructuralFeature, Object value, Notification notification, long timeStamp)
   {
-    return ChangeFactory.eINSTANCE.createFeatureChange(eStructuralFeature, value, isSet, timeStamp);
+    return ChangeFactory.eINSTANCE.createFeatureChange(eStructuralFeature, value, notification, timeStamp);
   }
 
   protected ResourceChange createResourceChange(Resource resource, EList<Object> value, long timeStamp)
