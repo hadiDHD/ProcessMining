@@ -343,7 +343,25 @@ public class ChangeRecorder extends BasicChangeRecorder implements Adapter.Inter
 
 	protected boolean shouldRecord(EStructuralFeature feature, EReference containment, Notification notification,
 			EObject eObject) {
-		return shouldRecord(feature, eObject) && notification.getEventType() != Notification.RESOLVE;
+		return shouldRecord(feature, eObject) && notification.getEventType() != Notification.RESOLVE
+				&& isImportant(eObject);
+		
+	}
+	
+	private boolean isImportant(EObject eObject) {
+		try {
+			if(eObject.eResource().getURI().fileExtension().equals("aird")
+					|| eObject.eResource().getURI().fileExtension().equals("genmodel")
+					) {
+				return false;
+			}else {
+				return true;
+			}
+		}catch (Exception exc) {
+			return false;
+			// TODO: handle exception
+//			exc.printStackTrace();
+		}
 	}
 
 	protected void handleFeature(EStructuralFeature feature, EReference containment, Notification notification,
@@ -466,10 +484,10 @@ public class ChangeRecorder extends BasicChangeRecorder implements Adapter.Inter
 	protected void handleResource(Notification notification, long timeStamp) {
 		Resource resource = null;
 		ResourceChange change = null;
-		if (isRecording()) {
-			resource = (Resource) notification.getNotifier();
-			change = getResourceChange(resource);
-		}
+//		if (isRecording()) {
+//			resource = (Resource) notification.getNotifier();
+//			change = getResourceChange(resource);
+//		}
 
 		int eventType = notification.getEventType();
 		switch (eventType) {
