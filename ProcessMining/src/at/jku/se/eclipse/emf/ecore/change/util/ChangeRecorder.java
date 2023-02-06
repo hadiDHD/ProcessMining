@@ -22,6 +22,7 @@ import org.deckfour.xes.extension.std.XConceptExtension;
 import org.deckfour.xes.extension.std.XTimeExtension;
 import org.deckfour.xes.factory.XFactory;
 import org.deckfour.xes.factory.XFactoryBufferedImpl;
+import org.deckfour.xes.factory.XFactoryNaiveImpl;
 import org.deckfour.xes.model.XLog;
 import org.deckfour.xes.model.XTrace;
 import org.eclipse.emf.common.notify.Adapter;
@@ -67,7 +68,8 @@ public class ChangeRecorder extends BasicChangeRecorder implements Adapter.Inter
 	private void init() {
 		XConceptExtension conceptExt = XConceptExtension.instance();
 		XTimeExtension timeExt = XTimeExtension.instance();
-		factory = new XFactoryBufferedImpl();
+		factory = new XFactoryNaiveImpl();
+//		factory = new XFactoryBufferedImpl();
 		log = factory.createLog();
 		log.getExtensions().add(conceptExt);
 		log.getExtensions().add(timeExt);
