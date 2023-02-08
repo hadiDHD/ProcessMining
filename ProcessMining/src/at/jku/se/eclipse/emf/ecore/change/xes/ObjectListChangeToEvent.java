@@ -16,7 +16,7 @@ public class ObjectListChangeToEvent extends ListChangeToEvent {
 	public ObjectListChangeToEvent(ListChange listChange, EObject reference, FeatureChange featureChange,
 			XFactory factory, Notification notification) {
 		super(listChange, factory);
-		put("type", "featureChange");
+		put("type", "listChange");
 		put("eventType", EventType.get(notification.getEventType()).toString());
 		putTime(featureChange.getTimeStamp());
 		String className = reference.eClass().getName();
