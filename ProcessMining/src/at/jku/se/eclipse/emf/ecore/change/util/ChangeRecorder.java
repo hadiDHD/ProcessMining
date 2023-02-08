@@ -676,10 +676,10 @@ public class ChangeRecorder extends BasicChangeRecorder implements Adapter.Inter
 		}
 		if (f.getListChanges() != null && !f.getListChanges().isEmpty()) {
 			for (ListChange l : f.getListChanges()) {
-				trace.add(new ObjectListChangeToEvent(l, eObject, f, factory));
+				trace.add(new ObjectListChangeToEvent(l, eObject, f, factory, notification));
 			}
 		} else {
-			trace.add(new FeatureChangeToEvent(eObject, f, factory));
+			trace.add(new FeatureChangeToEvent(eObject, f, factory, notification));
 			FeatureChangeToEcoreXes.addEvent(eObject, f, ecoreLog, ecoreMeta, notification);
 		}
 		return f;

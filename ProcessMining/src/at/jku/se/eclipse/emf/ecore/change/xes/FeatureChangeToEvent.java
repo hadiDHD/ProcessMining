@@ -1,5 +1,6 @@
 package at.jku.se.eclipse.emf.ecore.change.xes;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.deckfour.xes.factory.XFactory;
 import org.deckfour.xes.model.impl.XEventImpl;
 import org.eclipse.emf.common.util.URI;
@@ -8,12 +9,14 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import at.jku.se.eclipse.emf.ecore.change.FeatureChange;
+import at.jku.se.ecorexes.ecoreXES.EventType;
 
 public class FeatureChangeToEvent extends XEventImpl {
 
-	public FeatureChangeToEvent(EObject reference, FeatureChange featureChange, XFactory factory) {
+	public FeatureChangeToEvent(EObject reference, FeatureChange featureChange, XFactory factory, Notification notification) {
 		super();
 		put("type", "featureChange");
+		put("eventType", EventType.get(notification.getEventType()).toString());
 		putTime(featureChange.getTimeStamp());
 		String className = reference.eClass().getName();
 		String javaClass = reference.eClass().getInstanceClassName();

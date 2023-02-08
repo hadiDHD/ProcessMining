@@ -1,5 +1,6 @@
 package at.jku.se.eclipse.emf.ecore.change.xes;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.deckfour.xes.factory.XFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -8,13 +9,15 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import at.jku.se.eclipse.emf.ecore.change.FeatureChange;
 import at.jku.se.eclipse.emf.ecore.change.ListChange;
+import at.jku.se.ecorexes.ecoreXES.EventType;
 
 public class ObjectListChangeToEvent extends ListChangeToEvent {
 
 	public ObjectListChangeToEvent(ListChange listChange, EObject reference, FeatureChange featureChange,
-			XFactory factory) {
+			XFactory factory, Notification notification) {
 		super(listChange, factory);
 		put("type", "featureChange");
+		put("eventType", EventType.get(notification.getEventType()).toString());
 		putTime(featureChange.getTimeStamp());
 		String className = reference.eClass().getName();
 		String javaClass = reference.eClass().getInstanceClassName();
