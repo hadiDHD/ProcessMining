@@ -347,19 +347,18 @@ public class ChangeRecorder extends BasicChangeRecorder implements Adapter.Inter
 			EObject eObject) {
 		return shouldRecord(feature, eObject) && notification.getEventType() != Notification.RESOLVE
 				&& isImportant(eObject);
-		
+
 	}
-	
+
 	private boolean isImportant(EObject eObject) {
 		try {
-			if(eObject.eResource().getURI().fileExtension().equals("aird")
-					|| eObject.eResource().getURI().fileExtension().equals("genmodel")
-					) {
+			if (eObject.eResource().getURI().fileExtension().equals("aird")
+					|| eObject.eResource().getURI().fileExtension().equals("genmodel")) {
 				return false;
-			}else {
+			} else {
 				return true;
 			}
-		}catch (Exception exc) {
+		} catch (Exception exc) {
 			return false;
 			// TODO: handle exception
 //			exc.printStackTrace();
@@ -376,7 +375,7 @@ public class ChangeRecorder extends BasicChangeRecorder implements Adapter.Inter
 			changes = getFeatureChanges(eObject);
 			change = getFeatureChange(changes, feature);
 		}
-
+		
 		switch (notification.getEventType()) {
 		case Notification.RESOLVE:
 		case Notification.SET:
@@ -481,15 +480,26 @@ public class ChangeRecorder extends BasicChangeRecorder implements Adapter.Inter
 			break;
 		}
 		}
+		if (change != null) {
+			FeatureChange f = change;
+			if (f.getListChanges() != null && !f.getListChanges().isEmpty()) {
+				for (ListChange l : f.getListChanges()) {
+					trace.add(new ObjectListChangeToEvent(l, eObject, f, factory, notification));
+				}
+			} else {
+				trace.add(new FeatureChangeToEvent(eObject, f, factory, notification));
+				FeatureChangeToEcoreXes.addEvent(eObject, f, ecoreLog, ecoreMeta, notification);
+			}
+		}
 	}
 
 	protected void handleResource(Notification notification, long timeStamp) {
 		Resource resource = null;
 		ResourceChange change = null;
-//		if (isRecording()) {
-//			resource = (Resource) notification.getNotifier();
-//			change = getResourceChange(resource);
-//		}
+		if (isRecording()) {
+			resource = (Resource) notification.getNotifier();
+			change = getResourceChange(resource);
+		}
 
 		int eventType = notification.getEventType();
 		switch (eventType) {
@@ -585,6 +595,11 @@ public class ChangeRecorder extends BasicChangeRecorder implements Adapter.Inter
 			break;
 		}
 		}
+		if (change != null) {
+			for (ListChange l : change.getListChanges()) {
+				trace.add(new ResourceListChangeToEvent(l, change, factory));
+			}
+		}
 	}
 
 	/**
@@ -665,32 +680,32 @@ public class ChangeRecorder extends BasicChangeRecorder implements Adapter.Inter
 			Notification notification, long timeStamp) {
 		boolean isSet = notification.wasSet();
 		FeatureChange f = super.createFeatureChange(eObject, eStructuralFeature, value, notification, timeStamp);
-		try {
-			if(eObject.eResource().getURI().fileExtension().equals("aird")
-					|| eObject.eResource().getURI().fileExtension().equals("genmodel")) {
-				return f;
-			}
-		}catch (Exception exc) {
-			// TODO: handle exception
-//			exc.printStackTrace();
-		}
-		if (f.getListChanges() != null && !f.getListChanges().isEmpty()) {
-			for (ListChange l : f.getListChanges()) {
-				trace.add(new ObjectListChangeToEvent(l, eObject, f, factory, notification));
-			}
-		} else {
-			trace.add(new FeatureChangeToEvent(eObject, f, factory, notification));
-			FeatureChangeToEcoreXes.addEvent(eObject, f, ecoreLog, ecoreMeta, notification);
-		}
+//		try {
+//			if (eObject.eResource().getURI().fileExtension().equals("aird")
+//					|| eObject.eResource().getURI().fileExtension().equals("genmodel")) {
+//				return f;
+//			}
+//		} catch (Exception exc) {
+//			// TODO: handle exception
+////			exc.printStackTrace();
+//		}
+//		if (f.getListChanges() != null && !f.getListChanges().isEmpty()) {
+//			for (ListChange l : f.getListChanges()) {
+//				trace.add(new ObjectListChangeToEvent(l, eObject, f, factory, notification));
+//			}
+//		} else {
+//			trace.add(new FeatureChangeToEvent(eObject, f, factory, notification));
+//			FeatureChangeToEcoreXes.addEvent(eObject, f, ecoreLog, ecoreMeta, notification);
+//		}
 		return f;
 	}
 
 	@Override
 	protected ResourceChange createResourceChange(Resource resource, EList<Object> value, long timeStamp) {
 		ResourceChange r = super.createResourceChange(resource, value, timeStamp);
-		for (ListChange l : r.getListChanges()) {
-			trace.add(new ResourceListChangeToEvent(l, r, factory));
-		}
+//		for (ListChange l : r.getListChanges()) {
+//			trace.add(new ResourceListChangeToEvent(l, r, factory));
+//		}
 		return r;
 	}
 
