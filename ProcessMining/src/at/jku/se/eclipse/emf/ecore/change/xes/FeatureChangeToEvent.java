@@ -13,7 +13,8 @@ import at.jku.se.ecorexes.ecoreXES.EventType;
 
 public class FeatureChangeToEvent extends XEventImpl {
 
-	public FeatureChangeToEvent(EObject reference, FeatureChange featureChange, XFactory factory, Notification notification) {
+	public FeatureChangeToEvent(EObject reference, FeatureChange featureChange, XFactory factory,
+			Notification notification) {
 		super();
 		put("type", "featureChange");
 		put("eventType", EventType.get(notification.getEventType()).toString());
@@ -32,6 +33,9 @@ public class FeatureChangeToEvent extends XEventImpl {
 			}
 			put("dataValue", featureChange.getDataValue());
 		}
+		if (featureChange.getValue() != null) {
+			put("value", featureChange.getValue().toString());
+		}
 		if (featureChange.getReferenceValue() != null) {
 			put("referenceValue", EcoreUtil.getURI(featureChange.getReferenceValue()).toString());
 		}
@@ -44,6 +48,9 @@ public class FeatureChangeToEvent extends XEventImpl {
 			String id = resource.getURIFragment(reference);
 			put("id", id);
 		}
+
+		put("oldValue", notification.getOldStringValue());
+		put("newValue", notification.getNewStringValue());
 	}
 
 }
