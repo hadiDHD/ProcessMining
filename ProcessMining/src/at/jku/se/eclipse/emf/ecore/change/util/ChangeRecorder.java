@@ -353,9 +353,11 @@ public class ChangeRecorder extends BasicChangeRecorder implements Adapter.Inter
 	private boolean isImportant(EObject eObject) {
 		try {
 			if (eObject.eResource().getURI().fileExtension().equals("aird")
-					|| eObject.eResource().getURI().fileExtension().equals("genmodel")) {
+					|| eObject.eResource().getURI().fileExtension().equals("genmodel")
+					|| eObject.eResource().getURI().fileExtension().equals("notation")) {
 				return false;
 			} else {
+//				System.out.println(eObject.eResource().getURI().fileExtension());
 				return true;
 			}
 		} catch (Exception exc) {

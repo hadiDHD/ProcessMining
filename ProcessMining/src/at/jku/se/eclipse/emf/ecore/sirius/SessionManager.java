@@ -17,7 +17,7 @@ public class SessionManager implements SessionManagerListener {
 	@Override
 	public void notify(Session arg0, int arg1) {
 		System.out.println("NOTIFY! : " + arg1);
-		if(arg1 == 7) { // opened
+		if(arg1 == 7 && arg0.getTransactionalEditingDomain() != null) { // opened
 			Listener listener = new Listener(arg0);
 			listenerMap.put(arg0, listener);
 		}else if(arg1 == 9) {// closed
